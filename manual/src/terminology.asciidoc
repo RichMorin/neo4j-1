@@ -2,65 +2,79 @@
 [[terminology]]
 = Terminology
 
-Cypher is a special-purpose programming language for describing queries and operations on a graph database, with accompanying natural language concepts.
+Cypher is a special-purpose programming language for describing queries and operations on a graph database,
+with accompanying natural language concepts.
 This section defines the usage of technical terminology about graph databases.
 
-An asterisk (*) to the right of a term -- in cases where there are multiple terms for the same or similar concept -- indicates the term used for Neo4j and Cypher.
+An asterisk (*) to the right of a term -- in cases where there are multiple terms for the same or similar concept --
+indicates the term used for Neo4j and Cypher.
 
 [glossary]
 [[term-acyclic]]acyclic::
-_for a graph or subgraph:_ when there is no way to start at some node `n` and  follow a sequence of adjacent relationships that eventually loops back to `n` again.
+_for a graph or subgraph:_ when there is no way to start at some <<term-node, node>> `n`
+and follow a sequence of <<term-adjacent, adjacent>> <<term-relationship, relationships>>
+that eventually loops back to `n` again.
 The opposite of <<term-cyclic,cyclic>>.
 
 [[term-adjacent]]adjacent::
-nodes sharing an incident relationship or edges sharing an incident node.
+<<term-node,nodes>> sharing an <<term-incident, incident>>
+(i.e., directly-connected) <<term-relationship, relationship>>
+or <<term-edge, edges>> sharing an incident node.
 
 [[term-attribute]]attribute::
-Synonym for <<term-property,property>>.
+synonym for <<term-property, property>>.
 
 [[term-arc]]arc::
-_graph theory:_ an ordered pair of nodes.
-Also known as a directed relationship.
-See <<term-relationship,relationship>> and <<term-edge,edge>>.
+_graph theory:_ an ordered connection between a pair of nodes.
+Also known as a <<term-directed-relationship, directed relationship>>.
+See <<term-relationship, relationship>> and <<term-edge, edge>>.
 
 [[term-array]]array::
 container that holds a number of elements.
-The element types can be the types supported by the underlying graph storage, and all elements must be of the same type.
+The elements can be of any type supported by the underlying graph storage,
+but all elements in a single array must be of the same type.
 
 [[term-aggregating-expression]]aggregating expression::
-expression that summarizes a set of values, like computing their sum or their maximum.
+expression that summarizes a set of values (e.g., count, maximum, sum).
 
 [[term-clause]]clause::
-larger constituent components of queries and commands that start with identifying keywords.
-The following clauses exist in Cypher: `UNION`, `START`, `MATCH`, `OPTIONAL MATCH`, `FOREACH`, `CREATE`, `MERGE`, `CREATE UNIQUE`, `SET`, `REMOVE`, `DELETE`, `WITH`, `RETURN` and `LOAD CSV`.
+component of a Cypher query or command; starts with an identifying keyword.
+The following clauses currently exist in Cypher:
+`CREATE`, `CREATE UNIQUE`, `DELETE`, `FOREACH`, `LOAD CSV`, `MATCH`, `MERGE`, `OPTIONAL MATCH`,
+`REMOVE`, `RETURN`, `SET`, `START`, `UNION`, and `WITH`.
 
 [[term-co-incident]]co-incident::
-alternative term for adjacent relationships, which share a common node.
+alternative term for <<term-adjacent, adjacent>> <<term-relationship, relationships>>,
+which share a common node.
 
 [[term-collection]]collection::
 container that holds a number of values.
 The values can have mixed types.
 
 [[term-command]]command::
-a statement that operates on the database without affecting the data graph or returning content from it.
+a statement that operates on the database without affecting the <<term-data-graph, data graph>>
+or returning content from it.
 
 [[term-commit]]commit::
-successful completion of query execution that may result in a commit of the containing transaction, ensuring durability of any changes made and guaranteeing correctness of the result.
+successful completion of query execution that may result in recording
+of the containing <<term-transaction, transaction>>,
+ensuring durability of any changes made and guaranteeing correctness of the result.
 
 [[term-constraint]]constraint::
 _part of a database schema:_
-defines a contract that the database will never break, such as uniqueness of a property on all nodes with a specific label on them.
+defines a contract that the database will never break
+(e.g., uniqueness of a property on all nodes that have a specific label).
 
 [[term-cyclic]]cyclic::
-The opposite of <<term-acyclic,acyclic>>.
+The opposite of <<term-acyclic, acyclic>>.
 
 [[term-dag]]DAG::
 a _directed, acyclic_ graph:
-there are no _cyclic paths_ and all the _relationships_ are _directed._
+there are no _cyclic paths_ and all the _relationships_ are _directed_.
 
 [[term-data-graph]]data graph::
-graph stored in the database.
-See also <<term-property-graph,property graph>>.
+<<term-graph, graph>> stored in the database.
+See also <<term-property-graph, property graph>>.
 
 [[term-data-record]]data record::
 a unit of storage containing an arbitrary unordered collection of properties.
@@ -70,23 +84,28 @@ _of a node:_ is the number of relationships leaving or entering (if directed) th
 loops are counted twice.
 
 [[term-directed-relationship]]directed relationship::
-a relationship that has a direction; that is the relationship has a source node and a destination node.
+a <<term-relationship, relationship>> that has a direction;
+that is, the relationship has defined source and destination nodes.
 The opposite of an <<term-undirected-relationship, undirected relationship>>.
 
 [[term-edge]]edge::
-_graph theory:_ an unordered pair of vertices that are adjacent in a graph.
-See <<term-relationship,relationship>> and <<term-arc,arc>>.
+_graph theory:_ an unordered pair of <<term-node, nodes>> (i.e., vertices)
+that are <<term-adjacent, adjacent>> in a <<term-graph, graph>>.
+See <<term-relationship, relationship>> and <<term-arc, arc>>.
 
 [[term-execution-result]]execution result::
 all statements return an execution result.
-For queries, it can contain an iterator of result rows.
+For <<term-query, queries>>,
+this can contain an iterator of <<term-result-row, result rows>>.
 
 [[term-execution-plan]]execution plan::
-statement that is parsed and compiled, ready to execute.
-An execution plan consists of the physical operations that need to be performed in order to achieve the intent of the statement.
+parsed and compiled <<term-statement, statement>> that is ready for Neo4j to execute.
+An execution plan consists of the physical operations that need to be performed
+in order to achieve the intent of the statement.
 
 [[term-expression]]expression::
-produce values, and are used in _projections,_ as _predicates_ or when setting _properties_ on graph elements.
+produces a value; may be used in _projections_, as a  _predicate_,
+or when setting _properties_ on <<term-graph, graph>> elements.
 
 [[term-graph]]graph::
 . data graph,
@@ -94,46 +113,60 @@ produce values, and are used in _projections,_ as _predicates_ or when setting _
 . _graph theory:_ set of vertices and edges.
 
 [[term-graph-database]]graph database::
-a database that uses graph structures with nodes, relationships, and properties to represent and store data.
+a database that uses <<term-graph, graph>>-based structures
+(e.g., <<term-node, nodes>>, <<term-relationship, relationships>>, <<term-property, properties>>)
+to represent and store data.
 
 [[term-graph-element]]graph element::
-node or relationship that is part of a graph.
+<<term-node, node>> or <<term-relationship, relationship>>
+that is part of a <<term-graph, graph>>.
 
 [[term-identifier]]identifier::
 identifiers are named bindings to values in a statement (scalar values or collections).
 For example, in `MATCH n RETURN n`, `n` is an identifier.
 
 [[term-incident]]incident::
-adjacent relationship attached to a node or a node attached to a relationship.
+<<term-adjacent, adjacent>> <<term-relationship, relationship>>
+attached to a <<term-node, node>> or a node attached to a relationship.
 
 [[term-incoming-relationship]]incoming relationship::
-_pertaining to a <<term-directed-relationship,directed relationship>>:_ from the point of view of a node `n`, this is any relationship `r` arriving at `n`, exemplified by `()-[:r]->(n)`.
-The opposite of <<term-outgoing-relationship,outgoing>>.
+_pertaining to a <<term-directed-relationship, directed relationship>>:_
+from the point of view of a node `n`,
+this is any <<term-relationship, relationship>> `r` arriving at `n`, exemplified by `()-[:r]->(n)`.
+The opposite of <<term-outgoing-relationship, outgoing>>.
 
 [[term-index]]index::
-data structure that improves performance of a database by redundantly storing the same information in a way that is faster to read.
+data structure that improves performance of searches on a database.
+For example, _inverted indexes_ store sorted copies of data,
+with pointers back to the original location(s).
 
 [[term-intermediate-result]]intermediate result::
-set of identifiers and values (record) passed from one clause to another during query execution, internal to the execution of a given query.
+set of identifiers and values (record) passed from one clause to another during query execution.
+This is internal to the execution of a given query.
 
 [[term-label]]label::
-marks a node as a member of a named subset.
+marks a <<term-node, node>> as a member of a named subset.
 Nodes may be assigned zero or more labels.
 Labels are written as `:label` in Cypher (the actual label prefixed by a colon).
 Note: _graph theory:_
 This differs from mathematical graphs, where a label applies uniquely to a single vertex.
 
 [[term-null]]null::
-`NULL` is a special marker used to indicate that a data item does not exist in the graph or that the value of an expression is unknown or inapplicable.
+`NULL` is a special marker,
+used to indicate that a data item does not exist in the <<term-graph, graph>>
+or that the value of an <<term-expression, expression>> is unknown or inapplicable.
 
 [[term-neighbor]]neighbor::
-_of node:_ another node with a relationship to the node;
-_of relationship:_ another relationship connected to a common node.
+_of node:_ another <<term-node, node>>,
+connected by a common <<term-relationship, relationship>>;
+_of relationship:_ another relationship, connected to a common node.
 
 [[term-node]]node*::
-data record within a data graph that contains an arbitrary collection of properties.
-Nodes may have zero, one or more labels and are optionally connected by relationships.
-Similar to <<term-vertex,vertex>>.
+<<term-data-record, data record>> within a <<term-data-graph, data graph>>;
+contains an arbitrary collection of <<term-property, properties>>.
+Nodes may have zero, one, or more <<term-label, labels>>
+and are optionally connected by <<term-relationship, relationships>>.
+Similar to <<term-vertex, vertex>>.
 
 [[term-operator]]operator::
 there are three categories of operators:
@@ -142,61 +175,76 @@ there are three categories of operators:
 . _Comparison,_ such as `<`, `>`, `=` etc.
 
 [[term-outgoing-relationship]]outgoing relationship::
-_pertaining to a <<term-directed-relationship,directed relationship>>:_  from the point of view of a node `n`, this is any relationship `r` leaving `n`, exemplified by `(n)-[:r]->()`.
+_pertaining to a <<term-directed-relationship, directed relationship>>:_ 
+from the point of view of a <<term-node, node>> `n`,
+this is any <<term-relationship, relationship>> `r` leaving `n`, exemplified by `(n)-[:r]->()`.
 The opposite of <<term-incoming-relationship, incoming relationship>>.
 
 [[term-pattern-graph]]pattern graph::
-graph used to express the shape of the data being searched for in the data graph.
+<<term-graph, graph>> (e.g., in Cypher) used to express the shape
+of the data being searched for in the <<term-data-graph, data graph>>.
 
 [[term-path]]path::
-collection of alternating nodes and relationships that corresponds to a walk in the graph.
+collection of alternating <<term-node, nodes>> and <<term-relationship, relationships>>
+that corresponds to a walk in the <<term-data-graph, data graph>>.
 
 [[term-parameter]]parameter::
-named value provided when running a statement.
-Parameters allow Cypher to efficiently re-use execution plans without having to parse and recompile every statement when only a literal value changes.
+named value provided when running a <<term-statement, statement>>.
+Parameters allow Cypher to efficiently re-use <<term-execution-plan, execution plans>>
+without having to parse and recompile every statement when only a literal value changes.
 
 [[term-peer]]peer::
-relationships with the same type or nodes sharing a common label
+<<term-relationship, relationships>> with the same <<term-type, type>>
+or <<term-node, nodes>> sharing a common <<term-label, label>>.
 
 [[term-predicate]]predicate::
-expression that returns `TRUE`, `FALSE` or `NULL`.
-When used in `WHERE`, `NULL` is treated as `FALSE`.
+expression that returns `TRUE`, `FALSE`, or `NULL`.
+When used in a `WHERE` <<term-clause, clause>>, `NULL` is treated as `FALSE`.
 
 [[term-projection]]projection::
-an operation taking a <<term-result-row,result row>> as input to produce an output result row, which may be a subset of the identifiers provided in the input, a calculation based on single or multiple identifiers in the input, or both.
+an operation taking a <<term-result-row, result row>> as input
+to produce an output result row.
+This may be a subset of the identifiers provided in the input,
+a calculation based on single or multiple identifiers in the input, or both.
 The relevant clauses are `WITH` and `RETURN`.
 
 [[term-property]]property*::
-named value stored in a node or relationship.
+named value stored in a <<term-node, node>> or <<term-relationship, relationship>>.
 Synonym for <<term-attribute, attribute>>.
 
 [[term-property-graph]]property graph::
-a graph having directed, typed relationships and where the nodes and relationships may have zero or more associated properties.
+a <<term-graph, graph>> having directed,
+<<term-type, typed>> <<term-relationship, relationships>>.
+Each <<term-node, node>> or relationship may have zero or more associated <<term-property, properties>>.
 
 [[term-query]]query::
-statement that reads or writes data from the database
+statement that reads or writes data from the database.
 
 [[term-regular-path]]regular path query::
-a query whose path is expressed by a regular expression.
+a <<term-query, query>> whose <<term-path, path>>
+is expressed (i.e., defined, matched) by a regular expression.
 
 [[term-relationship]]relationship*::
-data record in a property graph that associates an ordered pair of nodes.
-Similar to <<term-edge,edge>> and <<term-arc,arc>>.
+data record in a <<term-property-graph, property graph>>
+that associates an ordered pair of <<term-node, nodes>>.
+Similar to <<term-edge, edge>> and <<term-arc, arc>>.
 
 [[term-relationship-type]]relationship type::
-name used to qualify a relationship.
-For example in the pattern `(start)-[:TYPE]->(to)`, `TYPE` is the relationship type
+name used to qualify a <<term-relationship, relationship>>.
+For example, in the pattern `(start)-[:TYPE]->(to)`, `TYPE` is the relationship type.
 
 [[term-result-row]]result row::
-each query returns an iterator of result rows.
-They represent the result of executing the query.
+each <<term-query, query>> returns an iterator of result rows,
+which represents the result of executing the query.
 Each result row is a set of key-value pairs (a record).
 
 [[term-rollback]]rollback::
-abort of the containing transaction, effectively undoing any changes defined inside the transaction.
+abort of the containing <<term-transaction, transaction>>,
+effectively undoing any changes defined inside the transaction.
 
 [[term-schema]]schema::
-persistent database state that describes available indexes and enabled constraints for the data graph.
+persistent database state that describes available indexes and enabled constraints
+for the <<term-data-graph, data graph>>.
 
 [[term-schema-command]]schema command::
 statement that updates the schema.
